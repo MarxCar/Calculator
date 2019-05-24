@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Context rhino = Context.enter();
         value = "";
         screen = (TextView) findViewById(R.id.numberField);
         updateScreen();
@@ -84,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
     }
     private void parseEquation(){
         String expression = "eval(\"" + value + "\")";
-        Context rhino = Context.enter();
         rhino.setOptimizationLevel(-1);
         try {
             value = rhino.evaluateString(rhino.initStandardObjects(), expression, "JavaScript", 1, null).toString()+"";
